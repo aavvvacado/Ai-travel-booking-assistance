@@ -1,18 +1,20 @@
 ---
-title: API Reference
-nav_order: 6
+title: API Reference & System Contracts
+nav_order: 9
 ---
 
-# API Contracts & BLoC Reference
+# 📖 API Reference & System Contracts
 
-Technical reference for domain entities, service interfaces, events, and states across the application.
+This document provides technical contract specifications for all domain entities, BLoC events, states, sort enums, and failure types across the application.
 
 ---
 
-## 1. `SearchCriteria` Entity
+## 1. Core Domain Entities
+
+### `SearchCriteria` Entity
 
 ```dart
-class SearchCriteria {
+class SearchCriteria extends Equatable {
   final String? origin;
   final String? destination;
   final TravelDatePreference? datePreference;
@@ -21,28 +23,85 @@ class SearchCriteria {
   final int? maxDuration;
   final bool? directOnly;
   final SortPreference sortPreference;
+
+  SearchCriteria copyWith({ ... });
 }
 ```
 
 ---
 
-## 2. `SortPreference` Enum
+### `Flight` Entity
 
-| Enum Value | Description | Trigger Expressions |
-|:---|:---|:---|
-| `SortPreference.cheapest` | Sorts flights by price ascending | `"cheapest"`, `"lowest fare"` |
-| `SortPreference.expensive` | Sorts flights by price descending | `"expensive"`, `"premium"`, `"costliest"` |
-| `SortPreference.fastest` | Sorts flights by total duration ascending | `"fastest"`, `"lesser layover"`, `"shorter duration"` |
-| `SortPreference.longest` | Sorts flights by total duration descending | `"longest"`, `"more layover"`, `"longer duration"` |
-| `SortPreference.earliest` | Sorts flights by departure time ascending | `"earliest"`, `"morning flight"` |
-| `SortPreference.latest` | Sorts flights by departure time descending | `"latest"`, `"night flight"` |
+```dart
+class Flight extends Equatable {
+  final String id;
+  final String flightNumber;
+  final String airline;
+  final String origin;
+  final String destination;
+  final DateTime departureTime;
+  final DateTime arrivalTime;
+  final double price;
+  final int durationMinutes;
+  final List<String> layovers;
+  final bool isDirect;
+  final List<String> badges;
+}
+```
 
 ---
 
-## 3. `VoiceChatBloc` Events
+### `Booking` Entity
 
-- `InitVoiceChatEvent`: Initializes speech recognition and speaks welcome prompt.
-- `StartListeningEvent`: Triggers audio recording & microphone listener.
-- `StopListeningEvent`: Stops recording and dispatches transcribed text to AI.
-- `SendTextMessageEvent(text)`: Sends text input directly to AI service.
-- `SetGeminiApiKeyEvent(apiKey)`: Updates active Gemini API key in service locator.
+```dart
+class Booking extends Equatable {
+  final String bookingId;
+  final Flight flight;
+  final PassengerDetails passengerDetails;
+  final String pnrReference; // 6-character code e.g. "PNR-9X8F21"
+  final DateTime bookingDate;
+  final String status; // "CONFIRMED" | "CANCELLED"
+}
+```
+
+---
+
+## 2. Enums & Value Contracts
+
+### `SortPreference` Enum
+
+| Enum Value | Sorting Behavior | Natural Language Triggers |
+|:---|:---|:---|
+| `SortPreference.cheapest` | Price Ascending | `"cheapest"`, `"lowest fare"`, `"under 25k"` |
+| `SortPreference.expensive` | Price Descending | `"expensive"`, `"premium"`, `"costliest"` |
+| `SortPreference.fastest` | Duration Ascending (Shortest first) | `"fastest"`, `"lesser layover"`, `"shorter duration"` |
+| `SortPreference.longest` | Duration Descending (Longest first) | `"longest"`, `"more layover"`, `"longer duration"` |
+| `SortPreference.earliest` | Departure Time Ascending | `"earliest"`, `"morning flight"` |
+| `SortPreference.latest` | Departure Time Descending | `"latest"`, `"night flight"` |
+| `SortPreference.none` | Default dataset order | No preference specified |
+
+---
+
+### `AiAction` Enum
+
+| Enum Value | System Behavior |
+|:---|:---|
+| `AiAction.greeting` | Speaks welcome prompt and offers assistance. |
+| `AiAction.askClarification` | Asks user for missing parameters (e.g. destination). |
+| `AiAction.searchFlights` | Executes flight search filter pipeline and updates UI. |
+| `AiAction.confirmBooking` | Triggers booking workflow for selected flight. |
+| `AiAction.cancelBooking` | Cancels pending or active booking. |
+
+---
+
+## 3. BLoC Contracts (`VoiceChatBloc` & `BookingBloc`)
+
+### `VoiceChatBloc` Events & States
+
+- **Events**: `InitVoiceChatEvent`, `StartListeningEvent`, `StopListeningEvent`, `SendTextMessageEvent(text)`, `SetGeminiApiKeyEvent(apiKey)`, `ClearCriteriaEvent`.
+- **State**: `VoiceChatState(messages, isListening, isThinking, partialSpeechText, searchCriteria, matchingFlights, smartBadges, activeApiKey)`.
+
+### `BookingBloc` Events & States
+
+- **Events**: `SelectFlightEvent(flight)`, `ConfirmBookingEvent(passengerDetails)`, `CancelBookingEvent`.
+- **States**: `BookingInitial`, `BookingInProgress(selectedFlight)`, `BookingConfirmedState(booking)`, `BookingError(message)`.

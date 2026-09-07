@@ -1,6 +1,6 @@
 ---
 title: Installation & Setup
-nav_order: 2
+nav_order: 10
 ---
 
 # Installation & Setup Guide

@@ -146,11 +146,14 @@ result.fold(
 
 Explore the full technical documentation suite:
 
-- [📄 Codebase File Index](Codebase-File-Index) — Exhaustive file-by-file code guide explaining every file in the project.
-- [🏗️ Clean Architecture](Clean-Architecture) — Detailed explanation of layer separation, dependency inversion, and BLoC state flow.
-- [📅 NLP & Date Resolver Engine](NLP-and-Date-Resolver) — Guide to date parsing rules, relative calculations (*"next month 7"*), and bidirectional layover sorting.
-- [🧠 Hybrid Gemini LLM Integration](Hybrid-Gemini-LLM) — Online Google Gemini 1.5 Flash JSON schema enforcement and local fallback mechanics.
-- [📖 API & BLoC Reference](API-Reference) — Comprehensive entity contracts, sort enums, events, and states reference.
-- [🛠️ Installation & Setup Guide](Installation-Setup) — Workstation setup, API key options, and testing instructions.
-- [❓ Troubleshooting & FAQ](Troubleshooting) — Solutions for common questions, microphone permissions, and edge cases.
+1. [🏗️ Clean Architecture](Clean-Architecture) — Layer separation, dependency inversion, and BLoC state flow.
+2. [📄 Codebase File Index](Codebase-File-Index) — Exhaustive file-by-file code guide explaining all 54 Dart files in the project.
+3. [⚡ BLoC State Management & Audio Flow](BLoc-State-Management-Flow) — Deep-dive into `VoiceChatBloc`, `BookingBloc`, STT audio streams, thinking bubble, and PNR lifecycle.
+4. [🧠 NLP Intent Engine & Date Resolver](NLP-and-Date-Resolver) — Line-by-line regex trace, anchor date math (*"next month 7"*), and city normalizers.
+5. [✈️ Smart Flight Search Engine](Smart-Flight-Search-Engine) — Multi-criteria filter pipeline, sorting comparator, and smart badging rules.
+6. [🧠 Hybrid Gemini LLM Integration](Hybrid-Gemini-LLM) — Online Google Gemini 1.5 Flash JSON schema enforcement and zero-config fallback.
+7. [🎨 UI Component Catalog & Design System](UI-Widget-Catalog-and-Design) — Dark theme glassmorphism styling (`AppColors`, `AppTheme`) and widget catalog.
+8. [📖 API Reference & System Contracts](API-Reference) — Entity contracts, sort enums, BLoC events, states, and failure definitions.
+9. [🛠️ Installation & Setup Guide](Installation-Setup) — Workstation setup, API key options, and automated testing commands.
+10. [❓ Troubleshooting & FAQ](Troubleshooting) — Diagnostic solutions for common questions, microphone permissions, and edge cases.
 
