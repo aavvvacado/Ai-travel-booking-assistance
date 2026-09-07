@@ -5,7 +5,7 @@ class ApiConstants {
   /// Default Gemini API Key (Can be overridden via --dart-define or App UI Modal)
   static const String defaultGeminiApiKey = String.fromEnvironment(
     'GEMINI_API_KEY',
-    defaultValue: 'put a key',
+    defaultValue: '',
   );
 
   /// Default model identifier

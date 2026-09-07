@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Travel Assistant · Stygian Docs</title>
+  <meta name="description" content="Documentation for AI Travel Booking Assistant - Voice & Chat Flight Search powered by Flutter Clean Architecture & Google Gemini Hybrid AI.">
+  <link rel="stylesheet" href="stygian.css">
+  <script src="stygian.js" defer></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="stygian-header">
+    <a href="index.html" class="logo-brand">
+      <span class="logo-badge">Stygian</span>
+      <span>AI Travel Assistant</span>
+    </a>
+    <div class="header-actions">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="docsSearchInput" class="search-input" placeholder="Search docs (e.g. Gemini, Date)..." />
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+        <span id="themeIcon">🌙</span>
+        <span id="themeText">Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="stygian-container">
+    <!-- Sidebar Navigation -->
+    <aside class="stygian-sidebar">
+      <div class="nav-section-title">Getting Started</div>
+      <a href="index.html" class="sidebar-nav-link active">⚡ Overview & Specs</a>
+      <a href="setup-guide.html" class="sidebar-nav-link">🚀 Installation & Setup</a>
+
+      <div class="nav-section-title">Core Systems</div>
+      <a href="architecture.html" class="sidebar-nav-link">🏗️ Clean Architecture</a>
+      <a href="nlp-date-engine.html" class="sidebar-nav-link">📅 NLP & Date Resolver</a>
+      <a href="gemini-hybrid-ai.html" class="sidebar-nav-link">🧠 Hybrid Gemini LLM</a>
+
+      <div class="nav-section-title">Reference</div>
+      <a href="api-reference.html" class="sidebar-nav-link">📖 API & BLoC Reference</a>
+      <a href="troubleshooting.html" class="sidebar-nav-link">🛠️ Troubleshooting & FAQ</a>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="stygian-content">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <span class="badge badge-primary">v2.0.0</span>
+        <span class="badge badge-success">Flutter 3.x</span>
+        <span class="badge badge-warning">Gemini 1.5 Flash</span>
+      </div>
+
+      <h1>AI Travel Booking Assistant</h1>
+      <p style="font-size: 1.15rem; color: rgb(var(--color-fg-dim)); margin-bottom: 2rem;">
+        A production-ready voice & conversational flight search and booking application built with Flutter, Clean Architecture, Google Gemini 1.5 Flash LLM, and a zero-config deterministic Local NLP Rule Engine fallback.
+      </p>
+
+      <!-- Quick Cards Grid -->
+      <div class="stygian-grid">
+        <a href="architecture.html" class="stygian-card">
+          <div class="card-icon">🏗️</div>
+          <div class="card-title">Clean Architecture</div>
+          <div class="card-desc">Feature-driven Clean Architecture with decoupled Data, Domain, Presentation, and Service Locator layers.</div>
+        </a>
+        <a href="gemini-hybrid-ai.html" class="stygian-card">
+          <div class="card-icon">🧠</div>
+          <div class="card-title">Hybrid Gemini LLM</div>
+          <div class="card-desc">Online LLM intent reasoning with structured JSON schema output and seamless local offline NLP failover.</div>
+        </a>
+        <a href="nlp-date-engine.html" class="stygian-card">
+          <div class="card-icon">📅</div>
+          <div class="card-title">Date & Layover Engine</div>
+          <div class="card-desc">Resolves composite expressions like "next month 7", relative dates, and bidirectional layover/duration sorting.</div>
+        </a>
+        <a href="setup-guide.html" class="stygian-card">
+          <div class="card-icon">⚡</div>
+          <div class="card-title">Setup & Execution</div>
+          <div class="card-desc">Quick setup, environment variable configuration, unit testing, and mobile build instructions.</div>
+        </a>
+      </div>
+
+      <h2>Key Features & Highlights</h2>
+
+      <div class="stygian-callout info">
+        <div class="callout-title">🎙️ Conversational Voice & Text Interface</div>
+        Seamlessly supports continuous Speech-to-Text (STT) and Text-to-Speech (TTS) audio output with ChatGPT-style thinking and search animation bubbles.
+      </div>
+
+      <div class="stygian-callout success">
+        <div class="callout-title">⚡ Zero-Config Hybrid AI Failover</div>
+        Works out-of-the-box with zero API key configuration via `LocalRuleAiServiceImpl` or online reasoning via `HybridAiServiceImpl` powered by Google Gemini 1.5 Flash.
+      </div>
+
+      <div class="stygian-callout warning">
+        <div class="callout-title">📅 Advanced Date Resolution</div>
+        Understands complex temporal queries like <em>"next month 7"</em> (October 7th, 2026 relative to reference date Sep 7, 2026), <em>"next weekend after the 12th"</em>, <em>"tomorrow"</em>, and explicit day updates.
+      </div>
+
+      <h2>Architecture Overview</h2>
+      <p>
+        The application strictly follows Clean Architecture principles, ensuring that UI components are completely independent of business logic and external network providers:
+      </p>
+
+      <div class="stygian-table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Layer</th>
+              <th>Location</th>
+              <th>Responsibility</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Presentation Layer</strong></td>
+              <td><code>lib/features/flight_booking/presentation/</code></td>
+              <td>Flutter UI Widgets, <code>VoiceChatBloc</code> (conversational state), <code>BookingBloc</code> (flight data state).</td>
+            </tr>
+            <tr>
+              <td><strong>Domain Layer</strong></td>
+              <td><code>lib/features/flight_booking/domain/</code></td>
+              <td>Pure business entities (<code>Flight</code>, <code>SearchCriteria</code>), <code>FlightSearchService</code>, <code>DateResolver</code>.</td>
+            </tr>
+            <tr>
+              <td><strong>Data Layer</strong></td>
+              <td><code>lib/features/flight_booking/data/</code></td>
+              <td><code>FlightLocalDataSource</code> mock dataset (200+ realistic flights across BOM, DEL, DXB, SIN, LHR, JFK).</td>
+            </tr>
+            <tr>
+              <td><strong>Core Layer</strong></td>
+              <td><code>lib/core/</code></td>
+              <td><code>ServiceLocator</code> (GetIt pattern), <code>AiService</code> interface, <code>SttService</code>, <code>TtsService</code>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Quick Start Code Example</h2>
+
+      <pre><code>// Searching flights programmatically via ParseUserIntentUseCase
+final result = await parseUserIntentUseCase(
+  userPrompt: 'Fly from Mumbai to Dubai next month 7 with lesser layover.',
+  currentCriteria: const SearchCriteria(),
+);
+
+result.fold(
+  (aiResult) {
+    print('Action: ${aiResult.action}');
+    print('Departure Date: ${aiResult.updatedCriteria.dateText}'); // 2026-10-07
+    print('Sort Preference: ${aiResult.updatedCriteria.sortPreference}'); // SortPreference.fastest
+    print('Matching Flights: ${aiResult.matchingFlights.length}');
+  },
+  (failure) => print('Error: ${failure.message}'),
+);</code></pre>
+
+      <!-- Navigation Footer -->
+      <div class="docs-nav-footer">
+        <div></div>
+        <a href="setup-guide.html" class="docs-nav-btn" style="text-align: right;">
+          <span class="docs-nav-sub">Next Section</span>
+          <span class="docs-nav-title">Installation & Setup Guide →</span>
+        </a>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

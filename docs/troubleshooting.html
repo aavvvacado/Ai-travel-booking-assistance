@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Troubleshooting & FAQ · Stygian Docs</title>
+  <link rel="stylesheet" href="stygian.css">
+  <script src="stygian.js" defer></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="stygian-header">
+    <a href="index.html" class="logo-brand">
+      <span class="logo-badge">Stygian</span>
+      <span>AI Travel Assistant</span>
+    </a>
+    <div class="header-actions">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="docsSearchInput" class="search-input" placeholder="Search docs..." />
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+        <span id="themeIcon">🌙</span>
+        <span id="themeText">Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="stygian-container">
+    <!-- Sidebar Navigation -->
+    <aside class="stygian-sidebar">
+      <div class="nav-section-title">Getting Started</div>
+      <a href="index.html" class="sidebar-nav-link">⚡ Overview & Specs</a>
+      <a href="setup-guide.html" class="sidebar-nav-link">🚀 Installation & Setup</a>
+
+      <div class="nav-section-title">Core Systems</div>
+      <a href="architecture.html" class="sidebar-nav-link">🏗️ Clean Architecture</a>
+      <a href="nlp-date-engine.html" class="sidebar-nav-link">📅 NLP & Date Resolver</a>
+      <a href="gemini-hybrid-ai.html" class="sidebar-nav-link">🧠 Hybrid Gemini LLM</a>
+
+      <div class="nav-section-title">Reference</div>
+      <a href="api-reference.html" class="sidebar-nav-link">📖 API & BLoC Reference</a>
+      <a href="troubleshooting.html" class="sidebar-nav-link active">🛠️ Troubleshooting & FAQ</a>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="stygian-content">
+      <h1>Troubleshooting & Frequently Asked Questions</h1>
+      <p>Diagnostic solutions for common issues, edge cases, and API key setup questions.</p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>1. Why does the app answer instantly without showing network delay?</h3>
+      <p>
+        If no valid Google Gemini API key is provided or if network connectivity is disabled, the app uses its zero-config <code>LocalRuleAiServiceImpl</code>. To test online Gemini reasoning, click the key icon (🔑) in the top bar and enter your key.
+      </p>
+
+      <h3>2. How does "next month 7" get resolved?</h3>
+      <p>
+        The <code>DateResolver</code> evaluates the application reference date (<strong>Sep 7, 2026</strong>) and matches composite expressions like <code>"next month 7"</code> or <code>"7th of next month"</code> to return an exact date of <strong>October 7th, 2026</strong>.
+      </p>
+
+      <h3>3. What happens if I ask for "lesser layover or duration"?</h3>
+      <p>
+        The NLP engine detects layover/duration preferences and updates <code>SearchCriteria.sortPreference</code> to <code>SortPreference.fastest</code>, sorting flights with shortest total travel time and direct/minimum layover options at the top.
+      </p>
+
+      <h2>Common Edge Cases & Solutions</h2>
+
+      <div class="stygian-callout danger">
+        <div class="callout-title">⚠️ Microphone Permission Denied</div>
+        If speech input does not register, ensure microphone permissions are granted in device settings:
+        <ul>
+          <li><strong>Android</strong>: Settings → Apps → AI Travel Assistant → Permissions → Microphone → Allow.</li>
+          <li><strong>iOS</strong>: Settings → AI Travel Assistant → Microphone → Enable.</li>
+        </ul>
+      </div>
+
+      <div class="stygian-callout warning">
+        <div class="callout-title">🔑 Invalid API Key Format</div>
+        API keys starting with <code>AQ...</code> or standard <code>AIzaSy...</code> keys are supported. If Gemini API throws HTTP 400 or quota errors, the app seamlessly falls back to local NLP rules without crashing.
+      </div>
+
+      <!-- Navigation Footer -->
+      <div class="docs-nav-footer">
+        <a href="api-reference.html" class="docs-nav-btn">
+          <span class="docs-nav-sub">Previous Section</span>
+          <span class="docs-nav-title">← API Reference</span>
+        </a>
+        <a href="index.html" class="docs-nav-btn" style="text-align: right;">
+          <span class="docs-nav-sub">Back to Start</span>
+          <span class="docs-nav-title">Overview & Specs →</span>
+        </a>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

@@ -3,8 +3,8 @@ import '../../features/flight_booking/domain/entities/travel_date_preference.dar
 class DateResolver {
   const DateResolver();
 
-  /// Reference application date (e.g. 2026-09-06)
-  static DateTime get defaultNow => DateTime(2026, 9, 6);
+  /// Reference application date (e.g. 2026-09-07)
+  static DateTime get defaultNow => DateTime(2026, 9, 7);
 
   /// Main method to resolve natural language expressions into TravelDatePreference
   TravelDatePreference resolve(
@@ -87,6 +87,53 @@ class DateResolver {
         thisSun,
         originalExpression: input,
       );
+    }
+
+    // Next month with explicit day number e.g. "next month 7", "7th of next month", "next month on 7th"
+    final nextMonthDayMatch = RegExp(
+      r'(?:next|nxt|following)\s+month\s+(?:on\s+)?(?:the\s+)?(?:date\s+)?(\d{1,2})(?:st|nd|rd|th)?|(\d{1,2})(?:st|nd|rd|th)?\s+(?:of\s+)?(?:next|nxt|following)\s+month',
+      caseSensitive: false,
+    ).firstMatch(cleanInput);
+
+    if (nextMonthDayMatch != null) {
+      final dayStr = nextMonthDayMatch.group(1) ?? nextMonthDayMatch.group(2);
+      if (dayStr != null) {
+        final dayNum = int.tryParse(dayStr);
+        if (dayNum != null && dayNum >= 1 && dayNum <= 31) {
+          final targetMonth = now.month + 1;
+          final targetYear = targetMonth > 12 ? now.year + 1 : now.year;
+          final normMonth = targetMonth > 12 ? 1 : targetMonth;
+          return TravelDatePreference.exact(
+            DateTime(targetYear, normMonth, dayNum),
+            originalExpression: input,
+          );
+        }
+      }
+    }
+
+    // Explicit day change phrases like "date to 7", "change date to 7", "date 7", "on 7th"
+    final dayNumMatch = RegExp(
+      r'\b(?:date\s+(?:to\s+)?|on\s+(?:the\s+)?|change\s+date\s+to\s+)(\d{1,2})(?:st|nd|rd|th)?\b',
+      caseSensitive: false,
+    ).firstMatch(cleanInput);
+
+    if (dayNumMatch != null) {
+      final dayNum = int.tryParse(dayNumMatch.group(1)!);
+      if (dayNum != null && dayNum >= 1 && dayNum <= 31) {
+        int month = now.month;
+        int year = now.year;
+        if (dayNum < now.day) {
+          month += 1;
+          if (month > 12) {
+            month = 1;
+            year += 1;
+          }
+        }
+        return TravelDatePreference.exact(
+          DateTime(year, month, dayNum),
+          originalExpression: input,
+        );
+      }
     }
 
     if (cleanInput.contains('next month')) {

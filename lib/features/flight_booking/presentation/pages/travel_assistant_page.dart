@@ -16,6 +16,7 @@ import '../widgets/booking_flow_sheet.dart';
 import '../widgets/chat_bubble.dart';
 import '../widgets/chat_gpt_input_bar.dart';
 import '../widgets/flight_results_header.dart';
+import '../widgets/gpt_loading_bubble.dart';
 import 'ticket_view_page.dart';
 
 class TravelAssistantPage extends StatefulWidget {
@@ -340,34 +341,40 @@ class _TravelAssistantPageState extends State<TravelAssistantPage> {
               Expanded(
                 child: BlocBuilder<VoiceChatBloc, VoiceChatState>(
                   builder: (context, state) {
+                    final isProcessing = state.voiceStatus == VoiceStateStatus.processing;
+                    final hasHeader = state.matchingFlights.isNotEmpty;
+                    final messageCount = state.messages.length;
+                    final totalCount = messageCount + (isProcessing ? 1 : 0) + (hasHeader ? 1 : 0);
+
                     return ListView.builder(
                       controller: _scrollController,
                       padding: const EdgeInsets.only(top: 12, bottom: 20),
-                      itemCount:
-                          state.messages.length +
-                          (state.matchingFlights.isNotEmpty ? 1 : 0),
+                      itemCount: totalCount,
                       itemBuilder: (context, index) {
-                        if (state.matchingFlights.isNotEmpty &&
-                            index == state.messages.length) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: FlightResultsHeader(
-                              criteria: state.activeCriteria,
-                              count: state.matchingFlights.length,
-                            ),
+                        if (index < messageCount) {
+                          final msg = state.messages[index];
+                          return ChatBubble(
+                            message: msg,
+                            smartBadges: state.smartBadges,
+                            selectedFlightId: state.selectedFlightForBooking?.id,
+                            onSelectFlight: (flight) {
+                              context.read<VoiceChatBloc>().add(
+                                SelectFlightForBookingEvent(flight),
+                              );
+                            },
                           );
                         }
 
-                        final msg = state.messages[index];
-                        return ChatBubble(
-                          message: msg,
-                          smartBadges: state.smartBadges,
-                          selectedFlightId: state.selectedFlightForBooking?.id,
-                          onSelectFlight: (flight) {
-                            context.read<VoiceChatBloc>().add(
-                              SelectFlightForBookingEvent(flight),
-                            );
-                          },
+                        if (isProcessing && index == messageCount) {
+                          return const GptLoadingBubble();
+                        }
+
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: FlightResultsHeader(
+                            criteria: state.activeCriteria,
+                            count: state.matchingFlights.length,
+                          ),
                         );
                       },
                     );

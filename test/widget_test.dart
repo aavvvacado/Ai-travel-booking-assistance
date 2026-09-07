@@ -30,6 +30,16 @@ void main() {
       expect(pref.startDate, DateTime(2026, 9, 7));
     });
 
+    test('resolves "next month 7" to Oct 7, 2026', () {
+      final pref = dateResolver.resolve('next month 7', referenceDate: refDate);
+      expect(pref.startDate, DateTime(2026, 10, 7));
+    });
+
+    test('resolves "7th of next month" to Oct 7, 2026', () {
+      final pref = dateResolver.resolve('7th of next month', referenceDate: refDate);
+      expect(pref.startDate, DateTime(2026, 10, 7));
+    });
+
     test('resolves date correction "next weekend after the 12th" to Sep 19-20', () {
       final anchor = DateTime(2026, 9, 12);
       final pref = dateResolver.resolve(
@@ -178,6 +188,34 @@ void main() {
       final matching = data.matchingFlights;
       expect(matching.isNotEmpty, true);
       expect(matching.every((f) => f.isDirect && f.price <= 20000.0), true);
+    });
+
+    test('TEST H: "lesser layover or duration" sets sortPreference to fastest', () async {
+      final flights = await localDataSource.getFlights();
+
+      final res = await aiService.parseUserPrompt(
+        userPrompt: 'Delhi to Dubai lesser layover or duration.',
+        currentCriteria: const SearchCriteria(),
+        availableFlights: flights,
+      );
+
+      final data = res.dataOrNull!;
+      expect(data.action, AiAction.searchFlights);
+      expect(data.updatedCriteria.sortPreference, SortPreference.fastest);
+    });
+
+    test('TEST I: "higher layover or more duration" sets sortPreference to longest', () async {
+      final flights = await localDataSource.getFlights();
+
+      final res = await aiService.parseUserPrompt(
+        userPrompt: 'Delhi to Dubai higher layover or more duration.',
+        currentCriteria: const SearchCriteria(),
+        availableFlights: flights,
+      );
+
+      final data = res.dataOrNull!;
+      expect(data.action, AiAction.searchFlights);
+      expect(data.updatedCriteria.sortPreference, SortPreference.longest);
     });
   });
 }

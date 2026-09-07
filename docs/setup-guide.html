@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup & Installation · Stygian Docs</title>
+  <link rel="stylesheet" href="stygian.css">
+  <script src="stygian.js" defer></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="stygian-header">
+    <a href="index.html" class="logo-brand">
+      <span class="logo-badge">Stygian</span>
+      <span>AI Travel Assistant</span>
+    </a>
+    <div class="header-actions">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="docsSearchInput" class="search-input" placeholder="Search docs..." />
+      </div>
+      <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+        <span id="themeIcon">🌙</span>
+        <span id="themeText">Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="stygian-container">
+    <!-- Sidebar Navigation -->
+    <aside class="stygian-sidebar">
+      <div class="nav-section-title">Getting Started</div>
+      <a href="index.html" class="sidebar-nav-link">⚡ Overview & Specs</a>
+      <a href="setup-guide.html" class="sidebar-nav-link active">🚀 Installation & Setup</a>
+
+      <div class="nav-section-title">Core Systems</div>
+      <a href="architecture.html" class="sidebar-nav-link">🏗️ Clean Architecture</a>
+      <a href="nlp-date-engine.html" class="sidebar-nav-link">📅 NLP & Date Resolver</a>
+      <a href="gemini-hybrid-ai.html" class="sidebar-nav-link">🧠 Hybrid Gemini LLM</a>
+
+      <div class="nav-section-title">Reference</div>
+      <a href="api-reference.html" class="sidebar-nav-link">📖 API & BLoC Reference</a>
+      <a href="troubleshooting.html" class="sidebar-nav-link">🛠️ Troubleshooting & FAQ</a>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="stygian-content">
+      <h1>Installation & Setup Guide</h1>
+      <p>Follow this step-by-step guide to clone, configure, build, and run the AI Travel Booking Assistant application on your development workstation or emulator.</p>
+
+      <h2>Prerequisites</h2>
+      <div class="stygian-callout info">
+        <div class="callout-title">📋 Required Tools</div>
+        <ul>
+          <li><strong>Flutter SDK</strong>: Version 3.19.0 or higher (stable channel).</li>
+          <li><strong>Dart SDK</strong>: Version 3.3.0 or higher.</li>
+          <li><strong>Android Studio / Xcode</strong>: For Android device emulators and iOS simulators.</li>
+          <li><strong>Google Gemini API Key</strong>: Optional. Required for online LLM reasoning; if left unconfigured, the app seamlessly runs on its Local NLP engine.</li>
+        </ul>
+      </div>
+
+      <h2>Step 1: Clone Repository & Fetch Dependencies</h2>
+      <pre><code># Clone the project repository
+git clone https://github.com/<your_username>/aitravelbookingassistance.git
+cd aitravelbookingassistance
+
+# Fetch Flutter package dependencies
+flutter pub get</code></pre>
+
+      <h2>Step 2: Configure Gemini API Key (Optional)</h2>
+      <p>You can provide your Google Gemini API key in two convenient ways:</p>
+      
+      <h3>Option A: Via Application UI Dialog</h3>
+      <p>Launch the application and click the key icon (🔑) in the top-right app bar. Enter your Gemini API key (e.g. <code>AIzaSy...</code> or custom key starting with <code>AQ...</code>) and click <strong>Save Key</strong>.</p>
+
+      <h3>Option B: Via <code>--dart-define</code> at Run Time</h3>
+      <pre><code>flutter run --dart-define=GEMINI_API_KEY="AIzaSyYourSecretGeminiApiKeyHere"</code></pre>
+
+      <h2>Step 3: Run Automated Unit Tests</h2>
+      <p>Verify that all 14 unit tests pass cleanly before launching the app:</p>
+      <pre><code>flutter test</code></pre>
+
+      <h2>Step 4: Run Application on Target Device</h2>
+      <pre><code># Run on connected Android or iOS device/emulator
+flutter run
+
+# Run on Chrome for Web testing
+flutter run -d chrome</code></pre>
+
+      <!-- Navigation Footer -->
+      <div class="docs-nav-footer">
+        <a href="index.html" class="docs-nav-btn">
+          <span class="docs-nav-sub">Previous Section</span>
+          <span class="docs-nav-title">← Overview & Specs</span>
+        </a>
+        <a href="architecture.html" class="docs-nav-btn" style="text-align: right;">
+          <span class="docs-nav-sub">Next Section</span>
+          <span class="docs-nav-title">Clean Architecture →</span>
+        </a>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

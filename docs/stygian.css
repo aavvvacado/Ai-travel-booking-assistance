@@ -1,0 +1,502 @@
+/* ==========================================================================
+   Stygian Theme - Modern Dark Documentation Design System for GitHub Pages
+   Ref: https://ksauraj.github.io/stygian/
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root,
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: 0, 0, 0;
+  --color-bg-hex: #000000;
+  --color-surface: 13, 13, 13;
+  --color-surface-hex: #0d0d0d;
+  --color-card: 18, 18, 18;
+  --color-card-hex: #121212;
+  --color-border: 38, 38, 38;
+  --color-border-hex: #262626;
+  --color-border-hover: 85, 85, 85;
+  --color-muted: 150, 150, 150;
+  --color-fg: 255, 255, 255;
+  --color-fg-dim: 215, 215, 220;
+  --color-accent: 99, 102, 241;
+  --color-accent-glow: rgba(99, 102, 241, 0.3);
+  --color-cyan: 6, 182, 212;
+  --color-emerald: 16, 185, 129;
+  --color-amber: 245, 158, 11;
+  --color-rose: 244, 63, 94;
+  --color-code: 5, 5, 5;
+  --sidebar-width: 280px;
+  --header-height: 64px;
+  --content-max: 60rem;
+}
+
+html[data-theme='light'] {
+  color-scheme: light;
+  --color-bg: 248, 249, 250;
+  --color-bg-hex: #f8f9fa;
+  --color-surface: 240, 242, 245;
+  --color-surface-hex: #f0f2f5;
+  --color-card: 255, 255, 255;
+  --color-card-hex: #ffffff;
+  --color-border: 220, 224, 230;
+  --color-border-hex: #dce0e6;
+  --color-border-hover: 140, 145, 155;
+  --color-muted: 100, 110, 125;
+  --color-fg: 15, 23, 42;
+  --color-fg-dim: 51, 65, 85;
+  --color-accent: 79, 70, 229;
+  --color-accent-glow: rgba(79, 70, 229, 0.15);
+  --color-code: 243, 244, 246;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-fg));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.stygian-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: rgba(var(--color-bg), 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgb(var(--color-border));
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+.logo-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: rgb(var(--color-fg));
+}
+
+.logo-badge {
+  background: linear-gradient(135deg, rgb(var(--color-accent)), rgb(var(--color-cyan)));
+  color: #fff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 240px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.45rem 0.85rem 0.45rem 2.2rem;
+  background: rgb(var(--color-surface));
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 8px;
+  color: rgb(var(--color-fg));
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: rgb(var(--color-accent));
+  box-shadow: 0 0 0 3px var(--color-accent-glow);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(var(--color-muted));
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.theme-toggle-btn {
+  background: rgb(var(--color-surface));
+  border: 1px solid rgb(var(--color-border));
+  color: rgb(var(--color-fg));
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  border-color: rgb(var(--color-border-hover));
+}
+
+/* Layout */
+.stygian-container {
+  display: flex;
+  padding-top: var(--header-height);
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.stygian-sidebar {
+  width: var(--sidebar-width);
+  position: fixed;
+  top: var(--header-height);
+  bottom: 0;
+  left: 0;
+  background: rgb(var(--color-surface));
+  border-right: 1px solid rgb(var(--color-border));
+  overflow-y: auto;
+  padding: 1.5rem 1rem;
+}
+
+.nav-section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgb(var(--color-muted));
+  margin: 1.25rem 0 0.5rem 0.5rem;
+}
+
+.nav-section-title:first-child {
+  margin-top: 0;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.75rem;
+  color: rgb(var(--color-fg-dim));
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  margin-bottom: 0.2rem;
+}
+
+.sidebar-nav-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgb(var(--color-fg));
+}
+
+.sidebar-nav-link.active {
+  background: rgb(var(--color-accent));
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px var(--color-accent-glow);
+}
+
+/* Main Content Area */
+.stygian-content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  max-width: var(--content-max);
+  padding: 2.5rem 3rem 5rem 3rem;
+}
+
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ffffff 30%, rgb(var(--color-muted)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html[data-theme='light'] h1 {
+  background: linear-gradient(135deg, rgb(var(--color-fg)) 30%, rgb(var(--color-muted)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 2.5rem 0 1rem 0;
+  border-bottom: 1px solid rgb(var(--color-border));
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.75rem 0 0.75rem 0;
+}
+
+p {
+  margin-bottom: 1.25rem;
+  color: rgb(var(--color-fg-dim));
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Callouts / Alerts */
+.stygian-callout {
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  background: rgb(var(--color-card));
+  border: 1px solid rgb(var(--color-border));
+  border-left-width: 4px;
+  margin: 1.5rem 0;
+}
+
+.stygian-callout.info {
+  border-left-color: rgb(var(--color-accent));
+}
+
+.stygian-callout.success {
+  border-left-color: rgb(var(--color-emerald));
+}
+
+.stygian-callout.warning {
+  border-left-color: rgb(var(--color-amber));
+}
+
+.stygian-callout.danger {
+  border-left-color: rgb(var(--color-rose));
+}
+
+.callout-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Code Blocks */
+pre, code {
+  font-family: 'Space Mono', monospace;
+}
+
+code {
+  background: rgb(var(--color-surface));
+  border: 1px solid rgb(var(--color-border));
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: #38bdf8;
+}
+
+pre {
+  background: rgb(var(--color-code));
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 12px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: rgb(var(--color-fg-dim));
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Cards & Grid */
+.stygian-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stygian-card {
+  background: rgb(var(--color-card));
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.stygian-card:hover {
+  border-color: rgb(var(--color-border-hover));
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(var(--color-accent), 0.12);
+  color: rgb(var(--color-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc {
+  font-size: 0.875rem;
+  color: rgb(var(--color-muted));
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Tables */
+.stygian-table-container {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  background: rgb(var(--color-surface));
+  padding: 0.85rem 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: rgb(var(--color-fg));
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+
+td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgb(var(--color-border));
+  color: rgb(var(--color-fg-dim));
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Prev/Next Navigation */
+.docs-nav-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgb(var(--color-border));
+}
+
+.docs-nav-btn {
+  padding: 1rem 1.25rem;
+  background: rgb(var(--color-card));
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 10px;
+  text-decoration: none;
+  color: rgb(var(--color-fg));
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+  min-width: 200px;
+}
+
+.docs-nav-btn:hover {
+  border-color: rgb(var(--color-border-hover));
+  transform: translateY(-2px);
+}
+
+.docs-nav-sub {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgb(var(--color-muted));
+}
+
+.docs-nav-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.badge-primary { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
+.badge-success { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+.badge-warning { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .stygian-sidebar {
+    display: none;
+  }
+  .stygian-content {
+    margin-left: 0;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+  }
+  .search-input-wrapper {
+    width: 160px;
+  }
+}

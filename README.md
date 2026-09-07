@@ -1,6 +1,11 @@
 # AI Travel Booking Assistant
 
+[![Docs](https://img.shields.io/badge/Documentation-GitHub%20Pages-indigo?style=for-the-badge&logo=github)](https://ksauraj.github.io/stygian/)
+[![Theme](https://img.shields.io/badge/Theme-Stygian%20Dark-black?style=for-the-badge)](docs/index.html)
+
 A voice-based AI travel booking assistant built with Flutter. This application allows users to have natural, conversational interactions to search for flights, refine their requirements, and complete a mock booking using a local travel dataset.
+
+> 📚 **Live Documentation Portal**: Complete documentation styled with the **Stygian** theme is available in the [`docs/`](docs/index.html) directory for GitHub Pages deployment.
 
 ## 🚀 Features
 

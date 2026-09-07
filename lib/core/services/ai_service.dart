@@ -59,7 +59,7 @@ abstract class AiService {
 const String kSystemPrompt = r"""
 You are an AI Travel Booking Assistant inside a mobile flight-booking application.
 Application Context:
-CURRENT_DATE: 2026-09-06
+CURRENT_DATE: 2026-09-07
 CURRENT_TIMEZONE: Asia/Kolkata
 
 Your job is to have a natural, friendly conversation, understand travel requirements, maintain conversation context, handle date corrections, and output exact structured JSON.
@@ -277,6 +277,7 @@ class LocalRuleAiServiceImpl implements AiService {
     }
 
     // Direct / Non-stop preferences
+    // Direct / Layover / Duration preferences
     if (text.contains('no layover') ||
         text.contains('direct flight') ||
         text.contains('direct') ||
@@ -286,13 +287,24 @@ class LocalRuleAiServiceImpl implements AiService {
       newDirectOnly = true;
     } else if (text.contains("don't want a long layover") ||
         text.contains("no long layover") ||
-        text.contains("short layover")) {
+        text.contains("short layover") ||
+        text.contains("lesser layover") ||
+        text.contains("less layover") ||
+        text.contains("shorter layover") ||
+        text.contains("min layover") ||
+        text.contains("lower layover") ||
+        text.contains("minimum layover")) {
       newDirectOnly = false;
+      newSort = SortPreference.fastest;
       newMaxDuration = 400; // max ~6.5h total duration
-    } else if (text.contains('connecting is fine') ||
-        text.contains('any flight') ||
-        text.contains('allow layover')) {
+    } else if (text.contains("higher layover") ||
+        text.contains("more layover") ||
+        text.contains("longer layover") ||
+        text.contains("long layover") ||
+        text.contains("allow layover") ||
+        text.contains("connecting is fine")) {
       newDirectOnly = false;
+      newSort = SortPreference.longest;
     }
 
     // Sort preferences: cheapest, fastest, expensive, longest, earliest, latest
@@ -300,9 +312,9 @@ class LocalRuleAiServiceImpl implements AiService {
       newSort = SortPreference.cheapest;
     } else if (text.contains('expensive') || text.contains('premium') || text.contains('most expensive') || text.contains('costliest') || text.contains('highest fare')) {
       newSort = SortPreference.expensive;
-    } else if (text.contains('fastest') || text.contains('shortest') || text.contains('quickest')) {
+    } else if (text.contains('fastest') || text.contains('shortest') || text.contains('quickest') || text.contains('lesser duration') || text.contains('less duration') || text.contains('shorter duration') || text.contains('lower duration') || text.contains('min duration')) {
       newSort = SortPreference.fastest;
-    } else if (text.contains('longest') || text.contains('most duration')) {
+    } else if (text.contains('longest') || text.contains('most duration') || text.contains('more duration') || text.contains('longer duration') || text.contains('higher duration')) {
       newSort = SortPreference.longest;
     } else if (text.contains('earliest') || text.contains('morning flight')) {
       newSort = SortPreference.earliest;
@@ -387,11 +399,16 @@ class LocalRuleAiServiceImpl implements AiService {
       }
     }
 
-    // Default date preference to flexible if user specifies filtering/budget preferences without a specific date
+    // Default date preference to flexible if user specifies filtering/budget/sort preferences without a specific date
     if (newDatePref == null &&
         (text.contains('cheapest') ||
             text.contains('fastest') ||
+            text.contains('expensive') ||
+            text.contains('longest') ||
+            text.contains('layover') ||
+            text.contains('duration') ||
             text.contains('direct') ||
+            newSort != SortPreference.none ||
             newMaxPrice != null)) {
       newDatePref = TravelDatePreference.flexible(originalExpression: 'Flexible dates');
     }
@@ -501,7 +518,7 @@ class HybridAiServiceImpl implements AiService {
   @override
   void setApiKey(String? key) {
     apiKey = key;
-    if (key != null && key.trim().isNotEmpty && !key.startsWith('AQ.')) {
+    if (key != null && key.trim().isNotEmpty) {
       try {
         _model = GenerativeModel(
           model: 'gemini-1.5-flash',
