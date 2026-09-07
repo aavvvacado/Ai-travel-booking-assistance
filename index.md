@@ -148,12 +148,12 @@ Explore the full technical documentation suite:
 
 1. [🏗️ Clean Architecture](Clean-Architecture) — Layer separation, dependency inversion, and BLoC state flow.
 2. [📄 Codebase File Index](Codebase-File-Index) — Exhaustive file-by-file code guide explaining all 54 Dart files in the project.
-3. [⚡ BLoC State Management & Audio Flow](BLoc-State-Management-Flow) — Deep-dive into `VoiceChatBloc`, `BookingBloc`, STT audio streams, thinking bubble, and PNR lifecycle.
-4. [🧠 NLP Intent Engine & Date Resolver](NLP-and-Date-Resolver) — Line-by-line regex trace, anchor date math (*"next month 7"*), and city normalizers.
-5. [✈️ Smart Flight Search Engine](Smart-Flight-Search-Engine) — Multi-criteria filter pipeline, sorting comparator, and smart badging rules.
-6. [🧠 Hybrid Gemini LLM Integration](Hybrid-Gemini-LLM) — Online Google Gemini 1.5 Flash JSON schema enforcement and zero-config fallback.
-7. [🎨 UI Component Catalog & Design System](UI-Widget-Catalog-and-Design) — Dark theme glassmorphism styling (`AppColors`, `AppTheme`) and widget catalog.
-8. [📖 API Reference & System Contracts](API-Reference) — Entity contracts, sort enums, BLoC events, states, and failure definitions.
-9. [🛠️ Installation & Setup Guide](Installation-Setup) — Workstation setup, API key options, and automated testing commands.
-10. [❓ Troubleshooting & FAQ](Troubleshooting) — Diagnostic solutions for common questions, microphone permissions, and edge cases.
-
+3. [🏗️ LLD, SOLID Principles & Developer Guide](LLD-SOLID-and-Developer-Guide) — SOLID design principles, design patterns, and developer extension lookup matrix.
+4. [⚡ BLoC State Management & Audio Flow](BLoc-State-Management-Flow) — Deep-dive into `VoiceChatBloc`, `BookingBloc`, STT audio streams, thinking bubble, and PNR lifecycle.
+5. [🧠 NLP Intent Engine & Date Resolver](NLP-and-Date-Resolver) — Line-by-line regex trace, anchor date math (*"next month 7"*), and city normalizers.
+6. [✈️ Smart Flight Search Engine](Smart-Flight-Search-Engine) — Multi-criteria filter pipeline, sorting comparator, and smart badging rules.
+7. [🧠 Hybrid Gemini LLM Integration](Hybrid-Gemini-LLM) — Online Google Gemini 1.5 Flash JSON schema enforcement and zero-config fallback.
+8. [🎨 UI Component Catalog & Design System](UI-Widget-Catalog-and-Design) — Dark theme glassmorphism styling (`AppColors`, `AppTheme`) and widget catalog.
+9. [📖 API Reference & System Contracts](API-Reference) — Entity contracts, sort enums, BLoC events, states, and failure definitions.
+10. [🛠️ Installation & Setup Guide](Installation-Setup) — Workstation setup, API key options, and automated testing commands.
+11. [❓ Troubleshooting & FAQ](Troubleshooting) — Diagnostic solutions for common questions, microphone permissions, and edge cases.

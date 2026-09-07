@@ -1,6 +1,6 @@
 ---
 title: Smart Flight Search Engine
-nav_order: 6
+nav_order: 7
 ---
 
 # ✈️ Smart Flight Search & Badging Engine Deep-Dive

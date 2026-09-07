@@ -1,6 +1,6 @@
 ---
 title: Hybrid Gemini LLM Integration
-nav_order: 7
+nav_order: 8
 ---
 
 # 🧠 Hybrid Gemini LLM Integration & Fallback Engine
