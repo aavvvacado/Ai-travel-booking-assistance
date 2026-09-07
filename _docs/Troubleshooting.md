@@ -1,8 +1,6 @@
 ---
-layout: default
-title: Troubleshooting & FAQ
+title: Troubleshooting
 nav_order: 7
-description: "Diagnostic solutions for common setup issues, API key troubleshooting, and edge cases."
 ---
 
 # Troubleshooting & Frequently Asked Questions
@@ -26,10 +24,8 @@ The NLP engine detects layover/duration preferences and updates `SearchCriteria.
 
 ## ⚠️ Edge Cases & Troubleshooting
 
-{: .warning }
 > **Microphone Permission Denied**: If speech input does not register, ensure microphone permissions are granted in device settings:
 > - **Android**: Settings → Apps → AI Travel Assistant → Permissions → Microphone → Allow.
 > - **iOS**: Settings → AI Travel Assistant → Microphone → Enable.
 
-{: .note }
 > **API Key Format**: API keys starting with `AQ...` or standard `AIzaSy...` keys are supported. If Gemini API throws HTTP 400 or quota errors, the app seamlessly falls back to local NLP rules without crashing.

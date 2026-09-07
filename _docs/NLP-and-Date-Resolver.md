@@ -1,8 +1,6 @@
 ---
-layout: default
 title: NLP & Date Resolver
 nav_order: 4
-description: "Deterministic natural language processing, temporal expression resolution, and layover/duration sorting."
 ---
 
 # NLP & Date Resolver Engine

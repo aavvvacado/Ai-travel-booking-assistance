@@ -1,21 +1,57 @@
+# AI Travel Booking Assistant Documentation Site - Stygian theme
+# Renderer: https://github.com/ksauraj/stygian (just-the-docs style)
 title: AI Travel Assistant
-description: "Voice & Chat Flight Search Engine built with Flutter Clean Architecture, Hybrid Gemini 1.5 Flash LLM & Stygian Dark Documentation Theme."
 url: "https://aavvvacado.github.io"
 baseurl: "/Ai-travel-booking-assistance"
-repository: "aavvvacado/Ai-travel-booking-assistance"
+description: >-
+  Voice & Chat Flight Search Engine built with Flutter Clean Architecture,
+  Hybrid Gemini 1.5 Flash LLM, and Local NLP Rule Engine.
+
 remote_theme: ksauraj/stygian
 
-plugins:
-  - jekyll-remote-theme
-  - jekyll-feed
-  - jekyll-seo-tag
-
+# ------------------------------------------------------------------ build
 markdown: kramdown
+highlighter: rouge
 kramdown:
   input: GFM
+  auto_ids: true
+  hard_wrap: false
   syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
 
-aux_links:
-  "GitHub Repository": "https://github.com/aavvvacado/Ai-travel-booking-assistance"
+exclude:
+  - README.md
+  - vendor
 
-theme_color: "#000000"
+# ------------------------------------------------------------------ content
+# Every page under _docs/ becomes a sidebar entry.
+collections:
+  docs:
+    output: true
+    permalink: /:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: docs
+    values:
+      layout: docs
+
+# ------------------------------------------------------------------ theme
+stygian:
+  header:
+    aux_links_new_tab: true
+    aux_links:
+      - { label: GitHub, href: https://github.com/aavvvacado/Ai-travel-booking-assistance }
+  theme:
+    default: dark
+  edit:
+    enabled: true
+    repo: https://github.com/aavvvacado/Ai-travel-booking-assistance
+    branch: gh-pages
+    view: tree
+  footer:
+    note: AI Travel Assistant Docs
+    right: "© 2026 aavvvacado"

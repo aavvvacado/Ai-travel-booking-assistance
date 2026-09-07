@@ -1,8 +1,6 @@
 ---
-layout: default
 title: Hybrid Gemini LLM
 nav_order: 5
-description: "Online Gemini 1.5 Flash LLM reasoning, structured JSON schema output, and zero-config local rule engine fallback."
 ---
 
 # Hybrid Gemini LLM Integration
@@ -38,7 +36,6 @@ When online reasoning is active, `HybridAiServiceImpl` initializes Google Gemini
 
 ## 🛡️ Seamless Fallback Architecture
 
-{: .note }
 If any of the following occur:
 - No API key configured (or uninitialized session)
 - Network request timeout or offline state

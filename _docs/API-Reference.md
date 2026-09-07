@@ -1,8 +1,6 @@
 ---
-layout: default
-title: API & BLoC Reference
+title: API Reference
 nav_order: 6
-description: "Technical reference for SearchCriteria, SortPreference, BLoC events, and service contracts."
 ---
 
 # API Contracts & BLoC Reference

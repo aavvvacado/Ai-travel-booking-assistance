@@ -1,8 +1,6 @@
 ---
-layout: default
 title: Installation & Setup
 nav_order: 2
-description: "Step-by-step installation, environment variables, unit testing, and Flutter build guide."
 ---
 
 # Installation & Setup Guide

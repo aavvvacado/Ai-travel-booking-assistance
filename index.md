@@ -2,14 +2,9 @@
 layout: default
 title: Overview & Specifications
 nav_order: 1
-description: "AI Travel Assistant - Voice & Chat Flight Search built with Flutter, Clean Architecture & Gemini 1.5 Flash LLM."
 ---
 
 # AI Travel Booking Assistant
-
-[![Repository](https://img.shields.io/badge/GitHub-aavvvacado%2FAi--travel--booking--assistance-indigo?style=for-the-badge&logo=github)](https://github.com/aavvvacado/Ai-travel-booking-assistance)
-[![Live Docs](https://img.shields.io/badge/Live%20Docs-GitHub%20Pages-emerald?style=for-the-badge&logo=githubpages)](https://aavvvacado.github.io/Ai-travel-booking-assistance/)
-[![Theme](https://img.shields.io/badge/Theme-Stygian%20Dark-black?style=for-the-badge)](https://aavvvacado.github.io/Ai-travel-booking-assistance/)
 
 A production-grade voice & chat flight search and booking application built with Flutter, Clean Architecture, Google Gemini 1.5 Flash LLM, and a zero-config deterministic Local NLP Rule Engine fallback.
 
@@ -17,7 +12,6 @@ A production-grade voice & chat flight search and booking application built with
 
 ## 🚀 Key Features
 
-{: .note }
 > **Hybrid Intelligence Engine**: Works out-of-the-box with zero API key configuration via `LocalRuleAiServiceImpl` or online reasoning via `HybridAiServiceImpl` powered by Google Gemini 1.5 Flash.
 
 - **🎙️ Conversational Voice & Text Interface**: Supports continuous Speech-to-Text (STT) and Text-to-Speech (TTS) audio output with ChatGPT-style thinking and search animation bubbles.
@@ -92,11 +86,11 @@ result.fold(
 
 ---
 
-## 📚 Documentation Navigation
+## 📚 Documentation Pages
 
-- [🚀 Installation & Setup Guide](setup-guide.html)
-- [🏗️ Clean Architecture & Design Patterns](architecture.html)
-- [📅 NLP & Date Resolver Engine](nlp-date-engine.html)
-- [🧠 Hybrid Gemini LLM Integration](gemini-hybrid-ai.html)
-- [📖 API & BLoC Reference](api-reference.html)
-- [🛠️ Troubleshooting & FAQ](troubleshooting.html)
+- [Installation & Setup](Installation-Setup)
+- [Clean Architecture](Clean-Architecture)
+- [NLP & Date Resolver](NLP-and-Date-Resolver)
+- [Hybrid Gemini LLM](Hybrid-Gemini-LLM)
+- [API Reference](API-Reference)
+- [Troubleshooting & FAQ](Troubleshooting)

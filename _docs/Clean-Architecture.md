@@ -1,8 +1,6 @@
 ---
-layout: default
 title: Clean Architecture
 nav_order: 3
-description: "Feature-driven Clean Architecture, layer separation, BLoC unidirectional state flow, and core services."
 ---
 
 # Clean Architecture & System Layers
