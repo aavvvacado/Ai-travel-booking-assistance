@@ -3,13 +3,13 @@ title: BLoC State Management & Audio Flow
 nav_order: 5
 ---
 
-# ⚡ BLoC State Management & Audio Data Flow Deep-Dive
+# BLoC State Management & Audio Data Flow Deep-Dive
 
 This document provides a line-by-line and step-by-step breakdown of state management in the application using **`flutter_bloc`**, covering event dispatching, state propagation, microphone speech stream handling, ChatGPT-style thinking bubble loading states, and PNR booking lifecycle transitions.
 
 ---
 
-## 🏗️ Architecture Overview: State Management
+## Architecture Overview: State Management
 
 The application features two primary BLoCs:
 
@@ -53,7 +53,7 @@ graph TD
 
 ---
 
-## 🎙️ VoiceChatBloc Deep-Dive (`lib/features/flight_booking/presentation/bloc/`)
+## VoiceChatBloc Deep-Dive (`lib/features/flight_booking/presentation/bloc/`)
 
 ### 1. Event Definitions (`voice_chat_event.dart`)
 
@@ -122,7 +122,7 @@ class VoiceChatState extends Equatable {
 
 ---
 
-## 🎫 BookingBloc Deep-Dive (`lib/features/flight_booking/presentation/bloc/`)
+## BookingBloc Deep-Dive (`lib/features/flight_booking/presentation/bloc/`)
 
 ### 1. State Machine & Event Handling
 
@@ -146,7 +146,7 @@ stateDiagram-v2
 
 ---
 
-## 🔄 ChatGPT-Style Thinking Bubble Integration (`GptLoadingBubble`)
+## ChatGPT-Style Thinking Bubble Integration (`GptLoadingBubble`)
 
 When `VoiceChatState.isThinking == true`, the presentation layer renders `GptLoadingBubble` directly in the chat stream:
 

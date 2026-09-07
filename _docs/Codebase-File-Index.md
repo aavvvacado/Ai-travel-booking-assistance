@@ -3,13 +3,13 @@ title: Codebase File Index
 nav_order: 3
 ---
 
-# 📂 Codebase File Index & Exhaustive Component Guide
+# Codebase File Index & Exhaustive Component Guide
 
 This document provides a detailed, file-by-file breakdown of every source file, domain entity, BLoC state container, utility module, widget, and configuration file in the **AI Travel Booking Assistant** repository.
 
 ---
 
-## 🎯 Quick Navigation by Architecture Layer
+## Quick Navigation by Architecture Layer
 
 - [1. Application Entry & Testing (`lib/main.dart`, `test/`)](#1-application-entry--testing-libmaindart-test)
 - [2. Core Infrastructure & Services (`lib/core/`)](#2-core-infrastructure--services-libcore)

@@ -3,7 +3,7 @@ title: API Reference & System Contracts
 nav_order: 10
 ---
 
-# 📖 API Reference & System Contracts
+# API Reference & System Contracts
 
 This document provides technical contract specifications for all domain entities, BLoC events, states, sort enums, and failure types across the application.
 

@@ -3,13 +3,13 @@ title: Smart Flight Search Engine
 nav_order: 7
 ---
 
-# ✈️ Smart Flight Search & Badging Engine Deep-Dive
+# Smart Flight Search & Badging Engine Deep-Dive
 
 This document details the internal architecture, algorithmic filtering pipeline, sorting algorithms, smart badge generation rules, and mock data distribution of `FlightSearchService` and `FlightLocalDataSource`.
 
 ---
 
-## 🏗️ Architecture & Data Pipeline
+## Architecture & Data Pipeline
 
 `FlightSearchService` operates as a pure domain service that receives candidate flights from `FlightLocalDataSource` and applies deterministic constraint evaluation, sorting algorithms, and smart badging.
 
@@ -34,7 +34,7 @@ graph TD
 
 ---
 
-## 🔍 Multi-Criteria Filter Pipeline (`searchFlights()`)
+## Multi-Criteria Filter Pipeline (`searchFlights()`)
 
 ```dart
 List<Flight> searchFlights({
@@ -97,7 +97,7 @@ List<Flight> searchFlights({
 
 ---
 
-## 📊 Bidirectional Sorting Comparator (`_compareFlights()`)
+## Bidirectional Sorting Comparator (`_compareFlights()`)
 
 The sort comparator evaluates flights based on `SortPreference` enums:
 
@@ -137,16 +137,16 @@ int _compareFlights(Flight a, Flight b, SortPreference preference) {
 
 ---
 
-## 🏷️ Smart Badge Generator (`generateSmartBadges()`)
+## Smart Badge Generator (`generateSmartBadges()`)
 
 The engine dynamically inspects search results and attaches smart highlight tags:
 
 | Badge Tag | Highlight Trigger Condition | Render Styling |
 |:---|:---|:---|
-| `✓ Cheapest direct option` | Lowest fare among all direct flights in dataset. | Green Glassmorphism Pill |
-| `✓ Shortest journey` | Minimum total `durationMinutes` in dataset. | Cyan Glassmorphism Pill |
-| `✓ Premium option` | Highest price option with business class seats. | Amber Gold Glassmorphism Pill |
-| `✓ Best Value` | Optimal price-to-duration ratio balance. | Indigo Purple Pill |
+| `Cheapest direct option` | Lowest fare among all direct flights in dataset. | Green Glassmorphism Pill |
+| `Shortest journey` | Minimum total `durationMinutes` in dataset. | Cyan Glassmorphism Pill |
+| `Premium option` | Highest price option with business class seats. | Amber Gold Glassmorphism Pill |
+| `Best Value` | Optimal price-to-duration ratio balance. | Indigo Purple Pill |
 
 ```dart
 List<String> generateSmartBadges({
@@ -160,12 +160,12 @@ List<String> generateSmartBadges({
   final fastest = results.reduce((curr, next) => curr.durationMinutes < next.durationMinutes ? curr : next);
 
   if (criteria.directOnly == true || cheapest.isDirect) {
-    badges.add("✓ Cheapest direct option (\$${cheapest.price.toInt()})");
+    badges.add("Cheapest direct option (\$${cheapest.price.toInt()})");
   } else {
-    badges.add("✓ Cheapest option (\$${cheapest.price.toInt()})");
+    badges.add("Cheapest option (\$${cheapest.price.toInt()})");
   }
 
-  badges.add("✓ Shortest journey (${fastest.durationMinutes ~/ 60}h ${fastest.durationMinutes % 60}m)");
+  badges.add("Shortest journey (${fastest.durationMinutes ~/ 60}h ${fastest.durationMinutes % 60}m)");
   return badges;
 }
 ```

@@ -9,7 +9,7 @@ The application is structured around **Feature-Driven Clean Architecture** with 
 
 ---
 
-## 🏗️ System Data Flow
+## System Data Flow
 
 ```text
 [User Voice / Text Input]
@@ -37,7 +37,7 @@ The application is structured around **Feature-Driven Clean Architecture** with 
 
 ---
 
-## 📦 Layer Breakdown
+## Layer Breakdown
 
 ### 1. Presentation Layer (`lib/features/flight_booking/presentation/`)
 - **`VoiceChatBloc`**: Manages conversational state, speech input, partial recognition text, AI responses, and typing/search loading bubbles.

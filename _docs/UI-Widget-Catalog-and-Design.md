@@ -3,13 +3,13 @@ title: UI Component Catalog & Design System
 nav_order: 9
 ---
 
-# 🎨 UI Component Catalog & Design System
+# UI Component Catalog & Design System
 
 This document provides a component guide and style system reference for the user interface, custom widgets, glassmorphism cards, and animations in the **AI Travel Booking Assistant**.
 
 ---
 
-## 🎨 Theme & Glassmorphism System (`lib/core/theme/`)
+## Theme & Glassmorphism System (`lib/core/theme/`)
 
 The application implements a dark mode design system inspired by glassmorphism:
 
@@ -30,7 +30,7 @@ class AppColors {
 
 ---
 
-## 🧩 Component Catalog & Widget Architecture
+## Component Catalog & Widget Architecture
 
 ```mermaid
 graph TD
@@ -54,7 +54,7 @@ graph TD
 
 ---
 
-## 📦 Key Widget Specifications
+## Key Widget Specifications
 
 ### 1. `GptLoadingBubble` (`gpt_loading_bubble.dart`)
 - **Visual Appearance**: Dark indigo pill container with three animated pulsing dots and status text.
@@ -63,7 +63,7 @@ graph TD
 ---
 
 ### 2. `FlightCard` (`flight_card.dart`)
-- **Visual Appearance**: Translucent glassmorphic card with subtle border highlight, airline logo badge, departure/arrival timestamps, travel duration, layovers, price tag, and smart badges (*✓ Cheapest direct option*, *✓ Shortest journey*).
+- **Visual Appearance**: Translucent glassmorphic card with subtle border highlight, airline logo badge, departure/arrival timestamps, travel duration, layovers, price tag, and smart badges (*Cheapest direct option*, *Shortest journey*).
 - **Interactions**: Tapping **"Book Now"** triggers `SelectFlightEvent(flight)`, launching `BookingDialog`.
 
 ---

@@ -9,7 +9,7 @@ Follow this guide to clone, configure, build, and run the AI Travel Booking Assi
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 | Component | Minimum Version | Notes |
 |:---|:---|:---|
@@ -20,7 +20,7 @@ Follow this guide to clone, configure, build, and run the AI Travel Booking Assi
 
 ---
 
-## 🛠️ Step-by-Step Setup
+## Step-by-Step Setup
 
 ### Step 1: Clone Repository
 
@@ -37,7 +37,7 @@ flutter pub get
 The app uses **Google Gemini 1.5 Flash**. You can provide your key in two ways:
 
 #### Option A: Via App UI Key Dialog
-Launch the app and click the key icon (🔑) in the app bar. Enter your API key (starting with `AIzaSy...` or `AQ...`) and click **Save Key**.
+Launch the app and click the key icon in the app bar. Enter your API key (starting with `AIzaSy...` or `AQ...`) and click **Save Key**.
 
 #### Option B: Via `--dart-define` at Compile Time
 ```bash

@@ -3,13 +3,13 @@ title: LLD, SOLID Principles & Developer Guide
 nav_order: 4
 ---
 
-# 🏗️ LLD Architecture, SOLID Principles & Developer Guide
+# LLD Architecture, SOLID Principles & Developer Guide
 
 This document provides a Low-Level Design (LLD) specification explaining how **SOLID Principles** and **Design Patterns** are applied across the codebase, followed by a **Developer Extension Matrix** that maps exact change requests to specific files, functions, and lines of code.
 
 ---
 
-## 🎯 SOLID Principles in Codebase
+## SOLID Principles in Codebase
 
 The architecture adheres strictly to object-oriented Low-Level Design (LLD) standards:
 
@@ -114,7 +114,7 @@ sl.registerFactory(() => ParseUserIntentUseCase(sl<AiService>()));
 
 ---
 
-## ⚙️ Design Patterns Applied
+## Design Patterns Applied
 
 | Pattern Name | Location in Codebase | Implementation Details |
 |:---|:---|:---|
@@ -126,7 +126,7 @@ sl.registerFactory(() => ParseUserIntentUseCase(sl<AiService>()));
 
 ---
 
-## 🛠️ Developer Extension Matrix ("Where do I change X?")
+## Developer Extension Matrix ("Where do I change X?")
 
 If you need to customize, add features, or update application logic, use this lookup guide to find the exact file and component:
 
@@ -144,7 +144,7 @@ If you need to customize, add features, or update application logic, use this lo
 
 ---
 
-## 🔌 API Protocol & Action Codes
+## API Protocol & Action Codes
 
 When `AiService` evaluates natural language inputs, it returns structured payload action codes (`AiAction`):
 

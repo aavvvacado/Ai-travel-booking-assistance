@@ -3,13 +3,13 @@ title: Hybrid Gemini LLM Integration
 nav_order: 8
 ---
 
-# 🧠 Hybrid Gemini LLM Integration & Fallback Engine
+# Hybrid Gemini LLM Integration & Fallback Engine
 
 This document details the online **Google Gemini 1.5 Flash LLM** integration (`HybridAiServiceImpl`), structured JSON schema enforcement, dynamic context payload construction, and deterministic offline fallback.
 
 ---
 
-## 🏗️ Architectural Overview
+## Architectural Overview
 
 The AI layer follows a **Hybrid Strategy Pattern**:
 
@@ -28,7 +28,7 @@ graph TD
 
 ---
 
-## ⚙️ GenerativeModel Setup & JSON Schema Enforcement (`ai_service.dart`)
+## GenerativeModel Setup & JSON Schema Enforcement (`ai_service.dart`)
 
 When a valid key (`AIzaSy...` or `AQ...`) is registered via `setApiKey(key)`, `HybridAiServiceImpl` initializes `GenerativeModel`:
 
@@ -47,7 +47,7 @@ _chatSession = _model!.startChat();
 
 ---
 
-## 📄 Enforced System Prompt (`api_constants.dart`)
+## Enforced System Prompt (`api_constants.dart`)
 
 ```json
 {
@@ -70,7 +70,7 @@ _chatSession = _model!.startChat();
 
 ---
 
-## 💬 Dynamic Context Payload Construction
+## Dynamic Context Payload Construction
 
 When sending prompts to Gemini, the service injects current search criteria context so that incremental prompts (*"make it cheaper"*, *"change date to 7"*) retain existing parameters:
 
@@ -90,7 +90,7 @@ Current Context Parameters: ${jsonEncode({
 
 ---
 
-## 🛡️ Fallback Matrix & Resiliency
+## Fallback Matrix & Resiliency
 
 `HybridAiServiceImpl` automatically catches exceptions and delegates execution to `LocalRuleAiServiceImpl` under the following conditions:
 

@@ -3,13 +3,13 @@ title: NLP Intent Engine & Date Resolver
 nav_order: 6
 ---
 
-# 🧠 NLP Intent Engine & Date Resolver Deep-Dive
+# NLP Intent Engine & Date Resolver Deep-Dive
 
 This document provides a line-by-line code walk-through and algorithmic breakdown of the deterministic **NLP Rule Engine** (`LocalRuleAiServiceImpl`) and temporal **Date Resolver** (`DateResolver`).
 
 ---
 
-## 🎯 Architecture & Anchor Date Specification
+## Architecture & Anchor Date Specification
 
 The NLP engine operates deterministically relative to a static reference anchor date:
 
@@ -29,7 +29,7 @@ graph LR
 
 ---
 
-## 📅 DateResolver Regex & Algorithmic Code Trace (`date_resolver.dart`)
+## DateResolver Regex & Algorithmic Code Trace (`date_resolver.dart`)
 
 ### 1. Composite "Next Month [Day]" Pattern Trace
 
@@ -104,7 +104,7 @@ if (cleanInput.contains('after the 12th') || cleanInput.contains('after 12th')) 
 
 ---
 
-## 🏙️ City & Airport Code Normalization (`_resolveCity`)
+## City & Airport Code Normalization (`_resolveCity`)
 
 `LocalRuleAiServiceImpl` maps informal city names, spelling variations, and 3-letter IATA airport codes to standardized canonical city names:
 
@@ -123,7 +123,7 @@ String? _resolveCity(String text) {
 
 ---
 
-## ↔️ Bidirectional Sort & Preference Resolution
+## Bidirectional Sort & Preference Resolution
 
 The NLP engine supports bidirectional parsing of layover, duration, price, and departure time constraints:
 
