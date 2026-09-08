@@ -50,26 +50,26 @@ The application is structured using **Feature-Driven Clean Architecture**. This 
 ```mermaid
 graph TD
     %% UI Layer
-    subgraph Presentation Layer [Presentation Layer (UI & BLoC)]
-        UI[Flutter UI Widgets]
-        VCB[VoiceChatBloc]
-        BB[BookingBloc]
+    subgraph Presentation ["Presentation Layer (UI & BLoC)"]
+        UI["Flutter UI Widgets"]
+        VCB["VoiceChatBloc"]
+        BB["BookingBloc"]
     end
 
     %% Domain Layer
-    subgraph Domain Layer [Domain Layer (Business Logic)]
-        SC[SearchCriteria Entity]
-        FSS[FlightSearchService]
-        DR[DateResolver]
+    subgraph Domain ["Domain Layer (Business Logic)"]
+        SC["SearchCriteria Entity"]
+        FSS["FlightSearchService"]
+        DR["DateResolver"]
     end
 
     %% Data Layer
-    subgraph Data / Core Layer [Data & Core Services]
-        FDS[FlightLocalDataSource]
-        AI[AiService Interface]
-        Speech[SpeechService]
-        Gemini[HybridAiServiceImpl]
-        Local[LocalRuleAiServiceImpl]
+    subgraph Data ["Data & Core Services"]
+        FDS["FlightLocalDataSource"]
+        AI["AiService Interface"]
+        Speech["SpeechService"]
+        Gemini["HybridAiServiceImpl"]
+        Local["LocalRuleAiServiceImpl"]
     end
 
     %% Connections
@@ -81,11 +81,10 @@ graph TD
     BB -->|Updates Criteria| SC
     BB -->|Requests Search| FSS
     FSS -->|Fetches Mock Data| FDS
-    FSS -->|Sorts & Filters| FSS
     BB -->|Yields Results| UI
     
-    AI <|-- Gemini
-    AI <|-- Local
+    Gemini -.->|Implements| AI
+    Local -.->|Implements| AI
 ```
 
 ### 1. Core Layer (`lib/core/`)
